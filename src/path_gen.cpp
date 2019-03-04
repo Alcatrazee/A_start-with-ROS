@@ -636,6 +636,7 @@ void map_rec_callback(const nav_msgs::OccupancyGrid map)
 			geometry_msgs::PoseStamped poses[Path_length];
 			path.header.frame_id = "map";
 			path.header.stamp = ros::Time::now();
+			path.poses.clear();
 			for (int i = 0; i < Path_length; i++)
 			{
 				poses[i].header.frame_id = "map";
@@ -662,9 +663,9 @@ int main(int argc, char **argv)
 
 	while (ros::ok())
 	{
-		ros::spinOnce();
+		ros::spin();
 		path_pub.publish(path);
-		//path.poses.clear();
+		ROS_INFO("eer");
 		rate.sleep();
 	}
 
